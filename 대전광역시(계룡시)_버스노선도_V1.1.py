@@ -136,6 +136,7 @@ def main():
         print("API 서버와의 통신에 실패했습니다.")
         return
     if not exact_routes:
+        print(f"'{route_no_input}'번 버스 정보를 찾을 수 없습니다.")
         return # 에러 메시지는 get_route_list에서 출력됨
 
     selected_route = None
@@ -174,7 +175,6 @@ def main():
             path_0_stop_names = {stop['name'] for stop in path_0}
             
             if official_end_name not in path_0_stop_names:
-                print("[정보] API 상/하행 정보를 종점 기준으로 보정합니다.")
                 outbound_stops, inbound_stops = path_1, path_0
         
         corrected_stop_data = {'outbound': outbound_stops, 'inbound': inbound_stops}
